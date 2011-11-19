@@ -17,37 +17,31 @@ lucida = pygame.font.SysFont("Ubuntu", 36)
 # loading multiple bitmaps for animation
 whirlpool = []
 for i in xrange(8):
-   filepath = 'obstacles/animations/strudel bitmaps/strudel clockwise 000%d.bmp' % i
+   filepath = 'strudel bitmaps/strudel clockwise 000%d.bmp' % i
    image = pygame.image.load(filepath)
    image.set_colorkey(image.get_at((0, 0)))
    whirlpool.append(image)
 time = 0
 
-water = []
-for i in xrange(8):
-   filepath = 'ani water bitmaps/ani water 000%d.bmp' % i
-   loader = pygame.image.load(filepath)
-   water.append(loader)
-   
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 clock  = pygame.time.Clock()
 
-bg_image = pygame.image.load('backgrounds/water.bmp').convert()
+bg_image = pygame.image.load('water.bmp').convert()
 y = bg_image.get_height()
 x = bg_image.get_width()
 
-player_image = pygame.image.load('characters/brachiosaurus.bmp').convert()
+player_image = pygame.image.load('brachiosaurus.bmp').convert()
 player_image.set_colorkey(player_image.get_at((0, 0)))
 player_x = 0
 player_y = 0
 
-prize_image = pygame.image.load('pickups/Basket berrys.bmp').convert()
+prize_image = pygame.image.load('berries.bmp').convert()
 prize_image.set_colorkey(prize_image.get_at((0, 0)))
 prize_x = randint(0, GRID_WIDTH - 1) * TILE_SIZE
 prize_y = randint(0, GRID_HEIGHT - 1) * TILE_SIZE
 
 obstacles = []
-obstacle_image = pygame.image.load('obstacles/strudel clockwise 0000.bmp').convert()
+obstacle_image = pygame.image.load('strudel bitmaps/strudel clockwise 0000.bmp').convert()
 obstacle_image.set_colorkey(obstacle_image.get_at((0, 0)))
 
 for i in xrange(NUMBER_OF_OBSTACLES):
@@ -62,7 +56,7 @@ for i in xrange(NUMBER_OF_OBSTACLES):
    new_rect.move_ip(grid_x, grid_y)
    obstacles.append(new_rect)
 
-lava = pygame.image.load('obstacles/eisberg erscheint0008.bmp').convert()
+lava = pygame.image.load('iceberg.bmp').convert()
 lava.set_colorkey(lava.get_at((0, 0)))
 
 lava_rect = lava.get_rect(left=64*4, top=0)   
@@ -141,6 +135,8 @@ while quit != True:
       text = lucida.render("you lost the game", True, (10, 10, 10))
       textpos = text.get_rect(centerx = WIDTH/2)
       screen.blit(text, textpos)
+      clock.tick(5000)
+      quit = True      
       
    screen.blit(prize_image, prize_rect)
    screen.blit(lava, lava_rect)
@@ -148,3 +144,4 @@ while quit != True:
    
    pygame.display.update()
    clock.tick(FRAMERATE)
+
