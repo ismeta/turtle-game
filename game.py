@@ -16,7 +16,7 @@ lucida = pygame.font.SysFont("Ubuntu", 36)
 
 # loading multiple bitmaps for animation
 whirlpool = []
-for i in xrange(8):
+for i in range(8):
    filepath = 'strudel bitmaps/strudel clockwise 000%d.bmp' % i
    image = pygame.image.load(filepath)
    image.set_colorkey(image.get_at((0, 0)))
@@ -44,7 +44,7 @@ obstacles = []
 obstacle_image = pygame.image.load('strudel bitmaps/strudel clockwise 0000.bmp').convert()
 obstacle_image.set_colorkey(obstacle_image.get_at((0, 0)))
 
-for i in xrange(NUMBER_OF_OBSTACLES):
+for i in range(NUMBER_OF_OBSTACLES):
    new_rect = obstacle_image.get_rect()
    grid_x = randint(0, GRID_WIDTH - 1) * TILE_SIZE
    grid_y = randint(0, GRID_HEIGHT - 1) * TILE_SIZE
@@ -113,8 +113,8 @@ while quit != True:
             player_image.set_colorkey(player_image.get_at((0, 0)))
             die += 1
    
-   for i in xrange(HEIGHT/y + 1):
-      for j in xrange(WIDTH/x + 1):
+   for i in range(int(HEIGHT/y) + 1):
+      for j in range(int(WIDTH/x) + 1):
          screen.blit(bg_image, (j*x, i*y))
          
    for obstacle in obstacles:
